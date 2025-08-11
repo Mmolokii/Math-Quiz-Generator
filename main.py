@@ -8,8 +8,21 @@ def generate_linear():
     question = f"Solve for x: {a}x + {b} = {c}"
     return question, x
 
-def quiz(num_questions):
+def get_num_questions():
+    print("Welcome to the Math Quiz Generator!")
+    while True:
+        try:
+            num = int(input("How many questions would you like? "))
+            if num <= 0:
+                print("Please enter a number greater than zero.")
+                continue
+            return num
+        except ValueError:
+            print("Please enter a valid number.")
+
+def quiz():
     score = 0
+    num_questions = get_num_questions()
     for i in range(num_questions):
         question, answer = generate_linear()
         print(f"Question {i+1}: {question}")
@@ -24,4 +37,4 @@ def quiz(num_questions):
             print("Invalid input. Skipping question.\n")
     print(f"Your score {score}/{num_questions} {(score/num_questions) * 100:.2f}%")
 
-quiz(5)
+quiz()
